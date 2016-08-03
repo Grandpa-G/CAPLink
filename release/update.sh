@@ -13,5 +13,7 @@ cd $CAPLINK
 #send the mm.log even though it might get overwritten below
 echo "send mm.log"
 curl -T mm.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+echo "send m.log"
+curl -T m.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 echo "nothing to do"
