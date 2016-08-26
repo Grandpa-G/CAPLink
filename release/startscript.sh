@@ -45,6 +45,7 @@ cp release/start.sh .
 cp release/startscript.sh .
 chmod +x start.sh
 chmod +x startscript.sh
+ls -l *.sh
 
 echo "Running update.sh script" 
 ./release/update.sh $SERIAL 
