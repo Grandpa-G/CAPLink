@@ -41,7 +41,7 @@ chmod +x release/update.sh
 chmod +x mumble.sh >> $CAPLINK/start.log
 
 echo "Running update.sh script" >> $CAPLINK/start.log
-./release/update.sh  >> $CAPLINK/start.log
+./release/update.sh | tee -a $CAPLINK/start.log
 cd $CAPLINK >> $CAPLINK/start.log
 
 echo "starting speaker, setting GPIO" >> $CAPLINK/start.log
