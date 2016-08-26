@@ -6,6 +6,7 @@ CAPLINK='/home/pi/CAPLink'
 SERIAL="$(cat /proc/cpuinfo | grep Serial | cut -d ':' -f 2)"
 SERIAL="$(echo "${SERIAL}" | sed -e 's/^[[:space:]]*//')"
 
+
 cd $CAPLINK
 pwd
 
@@ -13,12 +14,12 @@ pwd
 cp $CAPLINK/start.log $SERIAL.log
 curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
+echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
+
 echo "new curl" >> $CAPLINK/start.log
 cd $CAPLINK/release
 curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
 chmod +x mumble.sh
-
-echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
 
 df -h /root >> $CAPLINK/start.log
 echo " " >> $CAPLINK/start.log
