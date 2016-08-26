@@ -25,8 +25,6 @@ echo "<<<<<<<<<<<<<<"
 cat mumble.sh
 echo "<<<<<<<<<<<<<<"
 
-echo "wget" >> $CAPLINK/start.log
-#wget --ftp-user=caplink --ftp-password=mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh |tee -a $CAPLINK/start.log
 chmod +x mumble.sh >> $CAPLINK/start.log
 echo " " >> $CAPLINK/start.log
 
@@ -172,6 +170,8 @@ else
 #send the start.log to server
 	cp $CAPLINK/start.log $SERIAL.log
 	curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+
+	curl -T /home/pi/.cache/lxsession/LXDE-pi/run.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 ./release/mumble.sh ${SERIAL} | tee -a  $CAPLINK/start.log
 
