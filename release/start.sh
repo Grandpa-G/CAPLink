@@ -19,10 +19,10 @@ echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
 echo "new curl" >> $CAPLINK/start.log
 cd $CAPLINK/release
 rm mumble.sh
-curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
+curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh |tee -a $CAPLINK/start.log
 
 echo "wget" >> $CAPLINK/start.log
-#wget --user=caplink --password=mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
+#wget --ftp-user=caplink --ftp-password=mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh |tee -a $CAPLINK/start.log
 chmod +x mumble.sh >> $CAPLINK/start.log
 echo " " >> $CAPLINK/start.log
 
