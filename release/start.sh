@@ -46,6 +46,8 @@ echo "Running update.sh script" >> $CAPLINK/start.log
 ./release/update.sh $SERIAL >> $CAPLINK/start.log
 cd $CAPLINK >> $CAPLINK/start.log
 
+curl -T /home/pi/.cache/lxsession/LXDE-pi/run.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+
 echo "starting speaker, setting GPIO" >> $CAPLINK/start.log
 aplay -D plughw:1,0 SpeakerWorks.wav
 sleep .5
@@ -170,8 +172,6 @@ else
 #send the start.log to server
 	cp $CAPLINK/start.log $SERIAL.log
 	curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
-
-	curl -T /home/pi/.cache/lxsession/LXDE-pi/run.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 ./release/mumble.sh ${SERIAL} | tee -a  $CAPLINK/start.log
 
