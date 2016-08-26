@@ -20,6 +20,10 @@ echo "new curl" >> $CAPLINK/start.log
 cd $CAPLINK/release
 rm mumble.sh
 curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/${SERIAL}/mumble.sh >> ${CAPLINK}/start.log
+ls -l mumble.sh
+echo "<<<<<<<<<<<<<<"
+cat mumble.sh
+echo "<<<<<<<<<<<<<<"
 
 echo "wget" >> $CAPLINK/start.log
 #wget --ftp-user=caplink --ftp-password=mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh |tee -a $CAPLINK/start.log
