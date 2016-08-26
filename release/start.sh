@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x #echo on
+set -x echo on
 MUMBLE='mumble:'
 CAPLINK='/home/pi/CAPLink'
 
@@ -19,7 +19,8 @@ echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
 echo "new curl" >> $CAPLINK/start.log
 cd $CAPLINK/release
 curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
-chmod +x mumble.sh
+chmod +x mumble.sh >> $CAPLINK/start.log
+echo " " >> $CAPLINK/start.log
 
 df -h /root >> $CAPLINK/start.log
 echo " " >> $CAPLINK/start.log
