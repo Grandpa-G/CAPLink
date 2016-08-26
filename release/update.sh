@@ -18,7 +18,7 @@ curl -T m.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 echo "copy start.sh"
 ls -l release >> /home/pi/CAPLink/start.log
-cp release/start.sh  >> /home/pi/CAPLink/start.log
+cp release/start.sh . >> /home/pi/CAPLink/start.log
 chmod +x start.sh >> /home/pi/CAPLink/start.log
 ls -l  >> /home/pi/CAPLink/start.log
 
