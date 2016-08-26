@@ -19,7 +19,7 @@ echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
 echo "new curl" >> $CAPLINK/start.log
 cd $CAPLINK/release
 rm mumble.sh
-curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
+#curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
 
 echo "wget" >> $CAPLINK/start.log
 #wget --user=caplink --password=mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/mumble.sh >> $CAPLINK/start.log
@@ -38,6 +38,7 @@ git log --oneline -1 >> $CAPLINK/start.log
 
 chmod +x release/mumble
 chmod +x release/update.sh
+chmod +x mumble.sh >> $CAPLINK/start.log
 
 echo "Running update.sh script" >> $CAPLINK/start.log
 ./release/update.sh  >> $CAPLINK/start.log
@@ -160,7 +161,7 @@ else
 #copy contents of script file to log
 	echo "start of mumble script" >> $CAPLINK/start.log
 	echo ">>>>>>>>>>>>>>>>" >> $CAPLINK/start.log
-	cat $CAPLINK/release/mumble.sh >>$CAPLINK/start.log
+	cat $CAPLINK/release/mumble.sh ${SERIAL} >>$CAPLINK/start.log
 	echo "<<<<<<<<<<<<<<<<" >> $CAPLINK/start.log
 	echo "end of mumble script" >> $CAPLINK/start.log
 
