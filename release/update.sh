@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x echo on
+set -vx #echo on
 
 echo "clear git lock"
 rm .git/*.lock
