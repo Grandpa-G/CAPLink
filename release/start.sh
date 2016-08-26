@@ -41,7 +41,7 @@ chmod +x release/update.sh
 chmod +x mumble.sh >> $CAPLINK/start.log
 
 echo "Running update.sh script" >> $CAPLINK/start.log
-./release/update.sh | tee -a $CAPLINK/start.log
+./release/update.sh $SERIAL >> $CAPLINK/start.log
 cd $CAPLINK >> $CAPLINK/start.log
 
 echo "starting speaker, setting GPIO" >> $CAPLINK/start.log
@@ -161,7 +161,7 @@ else
 #copy contents of script file to log
 	echo "start of mumble script" >> $CAPLINK/start.log
 	echo ">>>>>>>>>>>>>>>>" >> $CAPLINK/start.log
-	cat $CAPLINK/release/mumble.sh ${SERIAL} >>$CAPLINK/start.log
+	cat $CAPLINK/release/mumble.sh >>$CAPLINK/start.log
 	echo "<<<<<<<<<<<<<<<<" >> $CAPLINK/start.log
 	echo "end of mumble script" >> $CAPLINK/start.log
 
@@ -169,7 +169,7 @@ else
 	cp $CAPLINK/start.log $SERIAL.log
 	curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
-./release/mumble.sh
+./release/mumble.sh ${SERIAL} | tee -a  $CAPLINK/start.log
 
         echo "end of mumble session" >> $CAPLINK/start.log
 

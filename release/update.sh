@@ -5,6 +5,7 @@ echo "clear git lock"
 rm .git/*.lock
 echo "cleared"
 
+echo "$1"
 MUMBLE='mumble:'
 CAPLINK='/home/pi/CAPLink'
 
