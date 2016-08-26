@@ -1,5 +1,5 @@
 #!/bin/sh
-set -v #echo on
+set -vx #echo on
 MUMBLE='mumble:'
 CAPLINK='/home/pi/CAPLink'
 
@@ -12,7 +12,7 @@ pwd
 
 #send the start.log even though it might get overwritten below
 cp $CAPLINK/start.log $SERIAL.log
-curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+curl -T s.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 echo "$(date) $MUMBLE process for $SERIAL is being started"
 
@@ -171,7 +171,7 @@ else
 
 #send the start.log to server
 	cp $CAPLINK/start.log $SERIAL.log
-	curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+	curl -T s.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 ./release/mumble.sh ${SERIAL} | tee -a  $CAPLINK/start.log
 
