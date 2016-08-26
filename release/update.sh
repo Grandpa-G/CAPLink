@@ -1,5 +1,5 @@
 #!/bin/sh
-set -v #echo on
+set -x #echo on
 
 echo "clear git lock"
 rm .git/*.lock
@@ -18,7 +18,6 @@ echo "send mm.log"
 curl -T mm.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 echo "send m.log"
 curl -T m.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
-
 
 echo "copy start.sh"
 ls -l release
