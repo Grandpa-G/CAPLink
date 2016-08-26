@@ -14,41 +14,41 @@ pwd
 cp $CAPLINK/start.log $SERIAL.log
 curl -T start.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
-echo "$(date) $MUMBLE process for $SERIAL is being started" > $CAPLINK/start.log
+echo "$(date) $MUMBLE process for $SERIAL is being started"
 
-echo "new curl" >> $CAPLINK/start.log
+echo "new curl" 
 cd $CAPLINK/release
 rm mumble.sh
-curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/${SERIAL}/mumble.sh >> ${CAPLINK}/start.log
+curl -u caplink:mumble -O ftp://caplink.azwg.org/CAPLink/${SERIAL}/mumble.sh 
 ls -l mumble.sh
 echo "<<<<<<<<<<<<<<"
 cat mumble.sh
 echo "<<<<<<<<<<<<<<"
 
-chmod +x mumble.sh >> $CAPLINK/start.log
-echo " " >> $CAPLINK/start.log
+chmod +x mumble.sh 
+echo " " 
 
-df -h /root >> $CAPLINK/start.log
-echo " " >> $CAPLINK/start.log
-echo "new start.sh"  >> $CAPLINK/start.log
+df -h /root 
+echo " " 
+echo "new start.sh"  
 
-echo "Checking for mumble update" >> $CAPLINK/start.log
-cd $CAPLINK  >> $CAPLINK/start.log
-git reset --hard HEAD >> $CAPLINK/start.log
-git pull >> $CAPLINK/start.log
-git log --oneline -1 >> $CAPLINK/start.log
+echo "Checking for mumble update" 
+cd $CAPLINK  
+git reset --hard HEAD 
+git pull 
+git log --oneline -1 
 
 chmod +x release/mumble
 chmod +x release/update.sh
-chmod +x mumble.sh >> $CAPLINK/start.log
+chmod +x mumble.sh 
 
-echo "Running update.sh script" >> $CAPLINK/start.log
-./release/update.sh $SERIAL >> $CAPLINK/start.log
-cd $CAPLINK >> $CAPLINK/start.log
+echo "Running update.sh script" 
+./release/update.sh $SERIAL 
+cd $CAPLINK 
 
-curl -T /home/pi/.cache/lxsession/LXDE-pi/run.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+#curl -T /home/pi/.cache/lxsession/LXDE-pi/run.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
-echo "starting speaker, setting GPIO" >> $CAPLINK/start.log
+echo "starting speaker, setting GPIO" 
 aplay -D plughw:1,0 SpeakerWorks.wav
 sleep .5
 
@@ -62,14 +62,14 @@ gpio export 4 out
 gpio -g mode 4 clock
 
 
-echo "GPIO read 3" >> $CAPLINK/start.log
+echo "GPIO read 3" 
 if [ "$(gpio -g read 3)" -eq 0 ]; then
 	aplay -D plughw:1,0  "PTT LED Blinking.wav"
 	sleep .5
 
   while true; do
 
-	echo "blink" >> $CAPLINK/start.log
+	echo "blink" 
 	for value in 1 2 3 4 5 6 7 8 9 10
 	do
 		echo "LED ON $value"
@@ -82,11 +82,11 @@ if [ "$(gpio -g read 3)" -eq 0 ]; then
 	aplay -D plughw:1,0  TestingSpeakers.wav
 	sleep .5
 
-	echo "speaker" >> $CAPLINK/start.log
+	echo "speaker" 
 	speaker-test -t sine -f 440 -c 2 -l 10
-	echo "speaker test done" >> $CAPLINK/start.log
+	echo "speaker test done" 
 
-	echo "push to talk testing" >> $CAPLINK/start.log
+	echo "push to talk testing" 
 	aplay -D plughw:1,0  PushToTalk.wav
 	sleep .5
 
@@ -100,7 +100,7 @@ if [ "$(gpio -g read 3)" -eq 0 ]; then
 		sleep 10s
 	done
 	gpio -g write 18 0
-	echo "push to talk done" >> $CAPLINK/start.log
+	echo "push to talk done" 
    done
 
 #send the start.log to server
@@ -112,13 +112,13 @@ if [ "$(gpio -g read 3)" -eq 0 ]; then
 
 	exit
 fi
-echo "GPIO read 2" >> $CAPLINK/start.log
+echo "GPIO read 2" 
 
 if [ "$(gpio -g read 2)" -eq 0 ]; then
 	aplay -D plughw:1,0  MumbleSkipped.wav
 	sleep .5
 
-	echo "mumble skipped" >> $CAPLINK/start.log
+	echo "mumble skipped" 
 
 #send the start.log to server
 	cd $CAPLINK/CAPLink/release
@@ -129,19 +129,19 @@ if [ "$(gpio -g read 2)" -eq 0 ]; then
 
 	exit
 fi
-echo "mumbling" >> $CAPLINK/start.log
+echo "mumbling" 
 
 if ps ax | grep -v grep | grep $MUMBLE > /dev/null
 then
 #no client running so don't start another
 #copy contents of script file to log
-	echo "start of mumble script" >> $CAPLINK/start.log
-	echo ">>>>>>>>>>>>>>>>" >> $CAPLINK/start.log
+	echo "start of mumble script" 
+	echo ">>>>>>>>>>>>>>>>" 
 	cat $CAPLINK/CAPLink/release/mumble.sh >>$CAPLINK/start.log
-	echo "<<<<<<<<<<<<<<<<" >> $CAPLINK/start.log
-	echo "end of mumble script" >> $CAPLINK/start.log
+	echo "<<<<<<<<<<<<<<<<" 
+	echo "end of mumble script" 
 
-	echo "$(date) $MUMBLE is already running" >> $CAPLINK/start.log
+	echo "$(date) $MUMBLE is already running" 
 
 #send the start.log to server
 	cp $CAPLINK/start.log $SERIAL.log
@@ -150,7 +150,7 @@ then
 else
 	aplay -D plughw:1,0  MumbleStarting.wav
 
-	echo "$(date) $MUMBLE is being started" >> $CAPLINK/start.log
+	echo "$(date) $MUMBLE is being started" 
 
 	gpio export 17 out
 	gpio export 18 out
@@ -163,11 +163,11 @@ else
 	gpio -g mode 4 clock
 
 #copy contents of script file to log
-	echo "start of mumble script" >> $CAPLINK/start.log
-	echo ">>>>>>>>>>>>>>>>" >> $CAPLINK/start.log
+	echo "start of mumble script" 
+	echo ">>>>>>>>>>>>>>>>" 
 	cat $CAPLINK/release/mumble.sh >>$CAPLINK/start.log
-	echo "<<<<<<<<<<<<<<<<" >> $CAPLINK/start.log
-	echo "end of mumble script" >> $CAPLINK/start.log
+	echo "<<<<<<<<<<<<<<<<" 
+	echo "end of mumble script" 
 
 #send the start.log to server
 	cp $CAPLINK/start.log $SERIAL.log
@@ -175,7 +175,7 @@ else
 
 ./release/mumble.sh ${SERIAL} | tee -a  $CAPLINK/start.log
 
-        echo "end of mumble session" >> $CAPLINK/start.log
+        echo "end of mumble session" 
 
 #	gpio -g write 17 1
 #	gpio -g write 18 0
