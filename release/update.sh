@@ -1,4 +1,6 @@
 #!/bin/sh
+set -x echo on
+
 echo "clear git lock"
 rm .git/*.lock
 echo "cleared"
@@ -17,11 +19,11 @@ echo "send m.log"
 curl -T m.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 echo "copy start.sh"
-ls -l release | tee -a /home/pi/CAPLink/start.log
-cp release/start.sh . | tee -a /home/pi/CAPLink/start.log
-chmod +x start.sh | tee -a /home/pi/CAPLink/start.log
-ls -l | tee -a /home/pi/CAPLink/start.log
+ls -l release
+cp release/start.sh .
+chmod +x start.sh
+ls -l
 
-stat /home/pi/CAPLink/release/mumble.sh | tee -a /home/pi/CAPLink/start.log
+stat /home/pi/CAPLink/release/mumble.sh
 
 echo "nothing to do"
