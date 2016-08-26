@@ -18,6 +18,9 @@ curl -T m.log -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
 
 echo "send start.sh"
 curl -T start.sh -u caplink:mumble ftp://caplink.azwg.org/CAPLink/$SERIAL/
+
+cp release/start.sh  >> /home/pi/CAPLink/start.log
+chmod +x start.sh
 ls -l  >> /home/pi/CAPLink/start.log
 
 stat /home/pi/CAPLink/release/mumble.sh >> /home/pi/CAPLink/start.log
