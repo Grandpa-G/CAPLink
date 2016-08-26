@@ -23,6 +23,5 @@ chmod +x start.sh >> /home/pi/CAPLink/start.log
 ls -l  >> /home/pi/CAPLink/start.log
 
 stat /home/pi/CAPLink/release/mumble.sh >> /home/pi/CAPLink/start.log
-cat /home/pi/CAPLink/release/mumble.sh >> /home/pi/CAPLink/start.log
 
 echo "nothing to do"
