@@ -30,7 +30,7 @@ echo "wget" >> $CAPLINK/start.log
 chmod +x mumble.sh 
 echo " "
 
-df -h /root >>
+df -h /root
 echo " " 
 echo "new start.sh" 
 
