@@ -41,6 +41,8 @@ git log --oneline -1
 chmod +x release/mumble
 chmod +x release/update.sh
 chmod +x mumble.sh
+chmod +x release/start.sh
+chmod +x release/startscript.sh
 cp release/start.sh .
 cp release/startscript.sh .
 chmod +x start.sh
